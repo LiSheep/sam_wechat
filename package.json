@@ -1,5 +1,5 @@
 {
-  "name": "application-name",
+  "name": "sam_wechat",
   "version": "0.0.1",
   "private": true,
   "scripts": {
@@ -7,6 +7,17 @@
   },
   "dependencies": {
     "express": "3.4.7",
-    "jade": "*"
-  }
+    "jade": "*",
+	"wechat": "*",
+	"request": "*",
+	"async": "*",
+	"mysql": "*",
+	"redis": "*"
+  },
+  "repository":{
+	"type": "git",
+	"url": "git@github.com:LiSheep/sam_wechat.git"
+  },
+  "author": "LiSheep",
+  "license": "Apache License"
 }
