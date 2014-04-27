@@ -335,3 +335,8 @@ async.waterfall([
 });
 
 */
+
+dictDao.getTail(function(err, res){
+	console.log(err);
+	console.log(res);
+});
