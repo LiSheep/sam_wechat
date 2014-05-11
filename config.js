@@ -3,14 +3,14 @@ var config = {};
 
 var mysqlInfo = {  
 	host     : 'localhost',
-	user     : 'root',
-	password : '',
+	user     : 'wechatUser',
+	password : 'Tea_chat86226603',
 	database : "dljdchat"
 }
 
 config.mysqlInfo = mysqlInfo;
 
-var redisInfo = {host:'222.26.224.56', port:6379, pass:''};
+var redisInfo = {host:'localhost', port:6379, pass:''};
 
 config.redisInfo = redisInfo;
 
