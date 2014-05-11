@@ -9,3 +9,12 @@ node app.js 80 (port num)
 ```
 
 本程序使用redis作为session支持，因此支持nginx等反向代理软件。
+
+##use shell to start
+
+forever is needed
+
+```
+./start 7000 7001 #...(ports)
+```
+
