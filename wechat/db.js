@@ -32,11 +32,7 @@ var tools = require("./tools");
 	}
 
 	db.readChildsByPwmId = function(wpmId, cb){
-<<<<<<< HEAD
-		var sql = "SELECT ca.caId, ca.caMessage, ca.caAct, wpm.wpmId, wpm.wpmKeyWord, wpm.wpmAlias FROM ChildAct AS ca LEFT JOIN WaitParentMenu AS wpm ON wpm.wpmId = ca.wpmId WHERE wpm.wpmId = ? ORDER BY ca.caOrder";
-=======
 		var sql = "SELECT ca.caId, ca.caMessage, ca.caAct, ca.caOrder, wpm.wpmId, wpm.wpmKeyWord, wpm.wpmAlias FROM ChildAct AS ca LEFT JOIN WaitParentMenu AS wpm ON wpm.wpmId = ca.wpmId WHERE wpm.wpmId = ? ORDER BY ca.caOrder";
->>>>>>> 59aeda3429f2af2d256465e6b1a5875eaf63bdfe
 		pool.query(sql, wpmId, cb);
 	}
 
