@@ -20,19 +20,19 @@ var tools = require("./tools");
 	//cb(err, result)
 	//ChildAct
 	db.readAllChildAct = function(cb){
-		var sql = "SELECT * FROM ChildAct";
+		var sql = "SELECT * FROM ChildAct ORDER BY caOrder";
 		pool.query(sql, cb);
 	}
 
 	//cb(err, result)
 	//ChildAct
 	db.readChildActById = function(caId, cb){
-		var sql = "SELECT * FROM ChildAct WHERE caId = ?";
+		var sql = "SELECT * FROM ChildAct WHERE caId = ? ORDER BY caOrder";
 		pool.query(sql, caId, cb);
 	}
 
 	db.readChildsByPwmId = function(wpmId, cb){
-		var sql = "SELECT ca.caId, ca.caMessage, ca.caAct, wpm.wpmId, wpm.wpmKeyWord, wpm.wpmAlias FROM ChildAct AS ca LEFT JOIN WaitParentMenu AS wpm ON wpm.wpmId = ca.wpmId WHERE wpm.wpmId = ?";
+		var sql = "SELECT ca.caId, ca.caMessage, ca.caAct, wpm.wpmId, wpm.wpmKeyWord, wpm.wpmAlias FROM ChildAct AS ca LEFT JOIN WaitParentMenu AS wpm ON wpm.wpmId = ca.wpmId WHERE wpm.wpmId = ? ORDER BY ca.caOrder";
 		pool.query(sql, wpmId, cb);
 	}
 
