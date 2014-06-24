@@ -1,6 +1,5 @@
 #!/bin/bash
 
-
 if [ ! -d "logs" ]; then
 	mkdir logs
 fi
@@ -16,12 +15,19 @@ for var in "$@"; do
 	fi
 done
 
+if [ -f "run.pid" ];then
+	rm -f run.pid
+fi
 
+pids=""
 for var in "$@"; do
 	if [ ! -f "./logs/forever_$var.log" ]; then
 		touch "./logs/forever_$var.log"
 	fi
 	forever start -p $(pwd)/logs -a -l forever_$var.log -o logs/out_$var.log -e logs/err_$var.log app.js $var
-	perl -e 'sleep(2)'
-	curl http://localhost:$var/loadList
+	pids=$pids$var","
 done
+
+echo $pids > run.pid
+echo "server start ok!"
+echo "Welcome to Sam Wechat :)"

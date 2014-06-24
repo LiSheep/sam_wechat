@@ -2,6 +2,9 @@ var express = require('express');
 //var routes = require('./routes');
 var http = require('http');
 var path = require('path');
+var List = require('wechat').List;
+var async = require('async');
+var dao = require('./wechat/dao');
 
 var chat = require("./wechat/chat");	//微信模块
 var config = require("./config");
@@ -44,6 +47,41 @@ if ('development' == app.get('env')) {
   app.use(express.errorHandler());
 }
 
+//loadlist
+async.waterfall([
+    dao.getAllWaitParentsMenu,  //获取父表
+    function(wpms, cb){
+      wpms.forEach(function(wpm){
+        dao.getAllChildActByWpmId(wpm["wpmId"], function(err, res){
+          if(err){
+            console.log(err);
+            return;
+          }
+          var childs = new Array();
+          for(var i = 0; i< res.length; i++){
+            var data = res[i];
+            childs.push(getChildArray(data));
+          }
+          List.add(wpm["wpmAlias"], childs);
+        });
+      });
+
+    }
+  ], function(err, result){
+    if(err){
+      console.log(err);
+    }
+});
+
+function getChildArray(data){
+  var result = new Array();
+  result.push(data["caMessage"]);
+  result.push(function(info, req, res){
+    var userOpenid = info.FromUserName; 
+    eval(data["caAct"]);
+  });
+  return result;
+}
 
 http.createServer(app).listen(app.get('port'), function(){
   console.log('Express server listening on port ' + app.get('port'));
