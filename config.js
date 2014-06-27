@@ -3,8 +3,8 @@ var config = {};
 
 var mysqlInfo = {  
 	host     : 'localhost',
-	user     : 'wechatUser',
-	password : 'Tea_chat86226603',
+	user     : 'user',
+	password : 'pass',
 	database : "dljdchat"
 }
 
