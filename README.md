@@ -18,3 +18,4 @@ forever is needed
 ./start 7000 7001 #...(ports)
 ```
 
+现在这个项目被整合成新的、更完善、更有一般性的项目，传送门-》：https://github.com/1956-studio/wechat-ship
